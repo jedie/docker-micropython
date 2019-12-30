@@ -13,6 +13,6 @@ jobs:
     - uses: actions/checkout@master
     - name: build
       run: |
-        docker build . -t jedie/micropython:latest
+        docker build . --pull -t jedie/micropython:latest
         echo "${{ secrets.DOCKER_TOKEN }}" | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
         docker push jedie/micropython;
