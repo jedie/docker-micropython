@@ -4,7 +4,7 @@ ENV TERM=xterm \
     DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
-  git-core python3-dev build-essential libffi-dev pkg-config
+  git-core python3-dev build-essential autoconf libffi-dev pkg-config
 
 RUN set -x \
     && groupadd -g 1000 mpy && useradd mpy -u 1000 -g 1000 -s /bin/bash --no-create-home \
@@ -19,6 +19,9 @@ RUN git clone --depth=1 --recursive https://github.com/micropython/micropython.g
 
 RUN cd /mpy/micropython \
     && make -C mpy-cross
+
+RUN cd /mpy/micropython/ports/unix \
+    && make deplibs
 
 RUN cd /mpy/micropython/ports/esp8266 \
     && make clean \
