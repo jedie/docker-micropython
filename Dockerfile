@@ -19,7 +19,6 @@ RUN git clone --depth=1 --recursive https://github.com/micropython/micropython.g
 
 RUN cd /mpy/micropython \
     && make -C mpy-cross
-
 RUN cd /mpy/micropython/ports/unix \
     && make deplibs \
     && make -j12 \
