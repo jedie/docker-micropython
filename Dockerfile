@@ -19,10 +19,10 @@ RUN git clone --depth=1 --recursive https://github.com/micropython/micropython.g
 
 RUN cd /mpy/micropython \
     && make -C mpy-cross
+
 RUN cd /mpy/micropython/ports/unix \
     && make deplibs \
-    && make -j12 \
-    && micropython --version
+    && make -j12
 
 RUN cd /mpy/micropython/ports/esp8266 \
     && make clean \
