@@ -27,8 +27,5 @@ RUN cd /mpy/micropython/ports/unix \
 RUN cd /mpy/micropython/ports/esp8266 \
     && make clean
 
-RUN mkdir -p /mpy/micropython/ports/esp8266/build-GENERIC/
-VOLUME /mpy/micropython/ports/esp8266/build-GENERIC/
-
 RUN cd /mpy/micropython/ports/esp8266 \
     && make -j12
