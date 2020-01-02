@@ -1,9 +1,12 @@
 # docker-micropython
 
-Docker image to compile micropython and freeze modules
+Docker image to compile [micropython](https://github.com/micropython/micropython) and freeze modules
 
-* https://github.com/micropython/micropython
+The ready to use docker image **jedie/micropython** is build via [github actions](https://github.com/jedie/docker-micropython/actions) and pushed to docker hub: https://hub.docker.com/r/jedie/micropython
 
+Based on the docker image https://hub.docker.com/r/jedie/esp-open-sdk made with: https://github.com/jedie/docker-esp-open-sdk
+
+e.g.:
 ```
 $ ./build.sh 
 + docker build . --pull -t jedie/micropython:latest
@@ -14,4 +17,4 @@ mpy@2f1a0844f5cf:/mpy$ ./micropython/ports/unix/micropython -c "import sys;print
 (name='micropython', version=(1, 12, 0), mpy=2821)
 ```
 
-Based on the docker image https://hub.docker.com/r/jedie/esp-open-sdk made with: https://github.com/jedie/docker-esp-open-sdk
+Used here: https://github.com/jedie/micropython-sonoff-webswitch
