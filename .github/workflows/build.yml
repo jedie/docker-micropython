@@ -1,18 +1,32 @@
 name: Build docker image
 
-on:
-  push:
-    # Publish `master` as Docker `latest` image.
-    branches:
-      - master
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: build
+    - uses: actions/checkout@v1
+
+    - name: "build docker image"
       run: |
-        ./build.sh
-        echo "${{ secrets.DOCKER_TOKEN }}" | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        docker push jedie/micropython;
+        make build
+
+    - name: "print version informations"
+      run: |
+        make micropython_version
+        make mpy_cross_version
+
+  release:
+    name: release
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - build
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: "push image to docker hub"
+        run: |
+          echo "${{ secrets.DOCKER_TOKEN }}" | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push jedie/micropython;
