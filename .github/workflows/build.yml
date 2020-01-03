@@ -28,5 +28,6 @@ jobs:
 
       - name: "push image to docker hub"
         run: |
+          make build
           echo "${{ secrets.DOCKER_TOKEN }}" | docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
           docker push jedie/micropython;
