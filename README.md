@@ -1,5 +1,7 @@
 # docker-micropython
 
+![badge.svg](https://github.com/jedie/docker-micropython/workflows/Build%20docker%20image/badge.svg?branch=master)
+
 Docker image to compile [micropython](https://github.com/micropython/micropython) and freeze modules.
 
 It contains a ready-to-use unix port and mpy-cross and based on the docker image https://hub.docker.com/r/jedie/esp-open-sdk made with: https://github.com/jedie/docker-esp-open-sdk for easier build ESP32/8266 ports.
