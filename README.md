@@ -6,16 +6,33 @@ It contains a ready-to-use unix port and mpy-cross and based on the docker image
 
 The ready to use docker image **jedie/micropython** is build via [github actions](https://github.com/jedie/docker-micropython/actions) and pushed to docker hub: https://hub.docker.com/r/jedie/micropython
 
-
-e.g.:
+usage e.g.:
 ```
-$ ./build.sh 
-+ docker build . --pull -t jedie/micropython:latest
+# Just clone the sources:
 
-$ ./shell.sh
-+ docker run -it jedie/micropython:latest /bin/bash
-mpy@2f1a0844f5cf:/mpy$ ./micropython/ports/unix/micropython -c "import sys;print(sys.implementation)"
+~$ git clone https://github.com/jedie/docker-micropython.git
+~$ cd docker-micropython
+
+# Display all make targets:
+
+~/docker-micropython$ make
+make targets:
+  help              This help page
+  build             build jedie/micropython:latest
+  shell             Open bash shell in micropython docker container
+  micropython_shell Starts micropython unix port as interactive interpreter
+
+# e.g.: Starts micropython unix port as interactive interpreter
+
+~/docker-micropython$ make micropython_shell
+...
+docker run -it jedie/micropython:latest /mpy/micropython/ports/unix/micropython
+MicroPython 1070984 on 2019-12-30; linux version
+Use Ctrl-D to exit, Ctrl-E for paste mode
+>>> import sys
+>>> sys.implementation
 (name='micropython', version=(1, 12, 0), mpy=2821)
+>>>
 ```
 
 Used here: https://github.com/jedie/micropython-sonoff-webswitch
